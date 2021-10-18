@@ -11,7 +11,7 @@ import goveeAPIrequests as api
 app = Flask(__name__)
 
 # tapo Login
-bulb = PyP100.P100("192.168.1.109","james_westhead@outlook.com","kaitswes")
+bulb = PyP100.P100("IP","example@email.com","password")
 
 # create a handshake with the bulb for interaction
 bulb.handshake()

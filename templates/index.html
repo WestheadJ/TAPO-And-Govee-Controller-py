@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+
+    <div style="text-align: center;justify-content: center;align-items: center">
+
+        <p>Overheated:{{ heated }}</p>
+        <p>Device State: {{ deviceState }}</p>
+        <p>Brightness: {{brightness}}</p>
+        <h1>Lights</h1>
+
+        <a href={{url_for('on_tapo')}}><button >Turn On Tapo Bulb</button></a>
+        <a href={{url_for('off_tapo')}}><button >Turn Tapo Bulb</button></a>
+
+        <a href={{url_for('up_tapo')}}><button>+</button></a>
+        <a href={{url_for('down_tapo')}}><button>-</button></a>
+    </div>
+    <div>
+        <a href="{{url_for('on_govee')}}"><button>Turn On Govee LED</button></a>
+        <a href="{{url_for('off_govee')}}"><button>Turn Off Govee LED</button></a>
+    </div>
+
+</body>
+</html>

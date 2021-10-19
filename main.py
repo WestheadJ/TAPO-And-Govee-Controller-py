@@ -3,7 +3,7 @@
 # import tapo python module
 from PyP100 import PyP100
 # import flask,template rendering and redirects
-from flask import Flask,render_template,redirect
+from flask import Flask,render_template,redirect,url_for,request
 # import the file 'goveeAPIrequests.py' to interact with the govee API
 import goveeAPIrequests as api
 
@@ -11,7 +11,7 @@ import goveeAPIrequests as api
 app = Flask(__name__)
 
 # tapo Login
-bulb = PyP100.P100("IP","example@email.com","password")
+bulb = PyP100.P100("","","")
 
 # create a handshake with the bulb for interaction
 bulb.handshake()
@@ -24,14 +24,12 @@ bulb.login()
 def index():
     # gets the device information for device status returns a dictioanry
     info = bulb.getDeviceInfo()
-    print(info)
     # gets the brightness out of the returns a dictionary
     brightness=info['result']['brightness']
     # gets if the device is overheated returns as an integer
     overheated = info["result"]["overheated"]
     # gets the device state it returns as a boolean
     device_state = info["result"]["device_on"]
-
     # for data representation if the light is off return the brightness as 0, as it's not outputting light
     # compares the boolean if it is false brightness is returned as 0
     if device_state == False:
@@ -135,7 +133,17 @@ def off_govee():
     # redirects the user to the URL of 'http://localhost:9000/'
     return redirect("/")
 
+@app.route("/change_colour",methods=['POST','GET'])
+def change_colour_govee():
+    data = request.form['colour']
+    return redirect(url_for('change_colour',colour=data))
+
+@app.route("/change_colour/<colour>")
+def change_colour(colour):
+    api.change_colour(colour)
+    return redirect("/")
+
 # main driver function
 if __name__ == '__main__':
     # run() method of Flask class runs the application on the network on port 9000
-    app.run(host="0.0.0.0",port=9000)
+    app.run(host="0.0.0.0",port=8000 ,debug=True)

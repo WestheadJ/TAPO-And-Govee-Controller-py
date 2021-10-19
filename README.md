@@ -3,7 +3,7 @@ I made this so I can control my Tapo L510 light bulb and Govee H6159 light strip
 the PyP100 module and the Govee public API
 
 # How it works
-A flask server is set up, the flask sever runs locally on the network on port ```9000```,
+A flask server is set up, the flask sever runs locally on the network on port ```8000```,
 your device is found by it's IP which you will need to find out what this is through 
 the [Tapo App](https://apps.apple.com/gb/app/tp-link-tapo/id1472718009) then it creates a
 handshake between the device and the server, then the server tries to create a login
